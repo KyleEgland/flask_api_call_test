@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Epicor Login Test</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Epicor Login Test</h1>
+
+            <p>This is a demonstration of the Epicor login mechanism</p>
+
+            <form action="{{ url_for('login') }} " method="post">
+                <div class="form-group">
+                    <label for="target">Epicor Auth Endpoint</label>
+                    <input type="text" name="target" id="target" aria-describedby="targetHelp">
+                    <small id="targetHelp" class="form-text text-muted">Example: https://[MyAppServerHost]/[MyAppServerInstance]/api/Help/</small>
+                </div>
+                <div class="form-group">
+                    <label for="username">Epicor Admin Username</label>
+                    <input type="text" name="username" id="username">
+                </div>
+                <div class="form-group">
+                    <label for="passwd">Password</label>
+                    <input type="password" name="passwd" id="passwd">
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </body>
+</html>

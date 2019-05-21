@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Epicor API Test</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    </head>
+    <body>
+        <div class="container">
+            <h1>API Interaction test</h1>
+
+            <p>This is a demonstration of Flask interacting with an API</p>
+
+            <!-- Login form -->
+            <div id="apiLogin" class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Api login info</h3>
+                    <div class="form">
+                        <div class="form-group">
+                            <label for="apiAuthEndpoint">API Auth Endpoint</label>
+                            <input class="form-control" type="text" name="apiAuthEndpoint" id="apiAuthEndpoint" aria-describedby="apiAuthEndpointHelp">
+                            <small id="apiAuthEndpointHelp" class="form-text text-muted">Example: https://[MyAppServerHost]/[MyAppServerInstance]/login.svc/</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">API Username</label>
+                            <input class="form-control" type="text" name="username" id="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="passwd">Password</label>
+                            <input class="form-control" type="password" name="passwd" id="passwd">
+                        </div>
+                        <button id="loginButton" class="btn btn-dark">Get Token</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Token Display area -->
+            <div class="container">
+                <span id="tokenresult"></span>
+            </div>
+
+            <!-- API Caller form -->
+            <div id="apiCall" class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Api Call</h3>
+                    <div class="form">
+                        <div class="form-group">
+                            <label for="apiCallEndpoint">API Call Endpoint</label>
+                            <input class="form-control" type="text" name="apiCallEndpoint" id="apiCallEndpoint" aria-describedby="apiCallEndpointHelp">
+                            <small id="apiCallEndpointHelp" class="form-text text-muted">Example: https://[MyAppServerHost]/[MyAppServerInstance]/api/v1/endpoint/$metadata</small>
+                        </div>
+                        <button class="btn btn-dark apiCallButton">Get Response</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Display Area -->
+            <div class="container">
+                <span id="apicallresult"></span>
+            </div>
+        </div>
+        <script src="{{ url_for('static', filename='javascript/jquery-3.2.1.slim.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='javascript/popper-1.14.7.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='javascript/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='javascript/app.js') }}"></script>
+    </body>
+</html>
