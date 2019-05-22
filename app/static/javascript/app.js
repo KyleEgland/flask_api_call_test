@@ -23,8 +23,10 @@ $(document).ready(function() {
             // The data we want to send into flask
             data: JSON.stringify({
                 'target': auth_endpoint,
-                'username': username,
-                'password': password
+                'headers': {
+                    'username': username,
+                    'password': password
+                }
             })
         });
 
@@ -33,7 +35,7 @@ $(document).ready(function() {
         // After the call has finished, update the text in the token
         // display area in the html
         req.done(function(data) {
-            $('#tokenresult').text(data.test_data);
+            $('#tokenresult').text(data.token_info);
         });
 
     });

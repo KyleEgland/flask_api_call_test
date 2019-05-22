@@ -27,25 +27,21 @@ def gettoken():
     if request.get_json():
         content = request.get_json()
 
-        return jsonify({'test_response': 'data exists',
-                        'test_data': content['target']})
+        target = content['target']
 
-    # target = request_info['target']
-    #
-    # headers = request_info['headers']
-    #
-    # auth_req = requests.post(target, headers=headers, verify=False)
-    #
-    # status = auth_req.status_code
-    #
-    # auth_req.encoding = 'utf-8'
+        headers = content['headers']
 
-    # json_resp = {
-    #     'test_response': request_info,
-    # }
+        auth_req = requests.post(target, headers=headers, verify=False)
+
+        status = auth_req.status_code
+
+        auth_req.encoding = 'utf-8'
+
+        return jsonify({'status': status,
+                        'token_info': auth_req.text})
 
     else:
-        return jsonify({'test_response': 'an error happend'})
+        return jsonify({'status': 'an error happend'})
 
 
 @bp.route('/getapirequest', methods=['POST'])
