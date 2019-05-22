@@ -13,3 +13,9 @@ DATABASE_URL=sqlite:////home/<username>/<dir_to_repos>/flask_api_call_test/app.d
 # This is for Windows
 DATABASE_URL=sqlite:///C:/Users/<username>/<dir_to_repos>/flask_api_call_test/app.db
 ```
+
+## Credits
+There are, generally, a lot of online resources that I use to accomplish my coding tasks.  Should you find anything is the repository useful, please patronize these additional resources or, at the very least, credit them in your own work if you clone/fork this for your own purposes.
+
+* [Using jQuery to Update a Page Without Refresh (Part 1 of 2)](https://youtu.be/Kcka5WBMktw) by [Pretty Printed](https://prettyprinted.com/)
+* [The Flask Mega-Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world) by [Miguel Grinbert](https://blog.miguelgrinberg.com/index)
