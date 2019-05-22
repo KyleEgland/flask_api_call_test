@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Flask API Test</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}">
     </head>
     <body>
         <div class="container">
@@ -38,7 +39,10 @@
 
             <!-- Token Display area -->
             <div class="container">
-                <span id="tokenresult"></span>
+                <span id="tokenstatus"></span><br />
+                <span id="tokentype"></span><br />
+                <span id="accesstoken"></span><br />
+                <span id="expiresin"></span><br />
             </div>
 
             <!-- API Caller form -->
