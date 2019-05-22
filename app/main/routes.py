@@ -1,9 +1,9 @@
 from flask import render_template
 from flask import request
 from flask import jsonify
+from flask import session
 from app.main import bp
 import requests
-import json
 
 
 # @bp.before_app_request
@@ -47,3 +47,12 @@ def gettoken():
 @bp.route('/getapirequest', methods=['POST'])
 def getapirequest():
     pass
+
+
+@bp.route('/addtosession', methods=['POST'])
+def addtosession():
+    if request.get_json():
+        content = request.get_json()
+        session[content['key']] = content['value']
+
+        return jsonify({'status', 'success'})
