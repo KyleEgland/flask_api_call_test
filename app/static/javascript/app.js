@@ -59,15 +59,59 @@ $(document).ready(function() {
                 $('#tokentype').text( 'Token Type: ' + $tokentype.text() );
                 $('#accesstoken').text( 'Token: ' + $accesstoken.text() );
                 $('#expiresin').text( 'Expires in: ' + $expiresin.text() );
+
+                // Making another request to put the bearer token into the flask
+                // session so that it may persist
+                req = $.ajax({
+                    // The flask endpoint we'll trigger to actually send the request
+                    url: '/addtosession',
+                    // The type of request being made
+                    type: 'POST',
+                    // The data type that'll be sent
+                    dataType: 'json',
+                    // The content type that'll be sent
+                    contentType: 'application/json',
+                    // Creating the data to be sent by parsing into a json object
+                    // that'll be handled by flask
+                    data: JSON.stringify({
+                        'key': 'Bearer',
+                        'value': $accesstoken.text()
+                    })
+                })
             } else {
                 $('#tokenresult').text( data.status )
             }
         });
-
     });
     // Adding click event to API call button
-    $('#loginButton').on('click', function() {
-        // TESTING
-        let auth_endpoint = $('#apiAuthEndpoint').val();
+    $('#apiCallButton').on('click', function() {
+
+        // Get the value entered into the api call input
+        let api_endpoint = $('#apiCallEndpoint').val();
+
+        // Send a request to the endpoint that will accept api call info
+        api_req = $.ajax({
+            // The flask endpoint we'll trigger to actually send the request
+            url: '/getapirequest',
+            // The type of request being made
+            type: 'POST',
+            // The data type that'll be sent
+            dataType: 'json',
+            // The content type that'll be sent
+            contentType: 'application/json',
+            // Creating the data to be sent by parsing into a json object
+            // that'll be handled by flask
+            data: JSON.stringify({
+                'target': api_endpoint
+            })
+        })
+        api_req.done(function(data) {
+            if (data.resp) {
+                let api_resp = data.resp
+                $('#apicallresult').text( api_resp )
+            } else {
+                $('#apicallresult').text( data.status )
+            }
+        })
     });
 });

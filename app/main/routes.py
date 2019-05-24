@@ -46,7 +46,25 @@ def gettoken():
 
 @bp.route('/getapirequest', methods=['POST'])
 def getapirequest():
-    pass
+    if request.get_json():
+        content = request.get_json()
+
+        target = content['target']
+
+        headers = {
+            'Authorization': 'Bearer {}'.format(session['Bearer'])
+        }
+
+        api_resp = requests.get(target, headers=headers, verify=False)
+
+        status = api_resp.status_code
+
+        api_resp.encoding = 'utf-8'
+
+        return jsonify({'status': status,
+                        'resp': api_resp.text})
+    else:
+        return jsonify({'status': 'an error happened'})
 
 
 @bp.route('/addtosession', methods=['POST'])
@@ -55,4 +73,4 @@ def addtosession():
         content = request.get_json()
         session[content['key']] = content['value']
 
-        return jsonify({'status', 'success'})
+        return jsonify({'status': 'success'})
